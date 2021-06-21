@@ -1,0 +1,23 @@
+first CTRL + F in Main.cpp and find:
+case ENET_EVENT_TYPE_RECEIVE:
+
+then under that
+
+ENetPeer* peer = event.peer;
+if(peer->incomingDataTotal > 5000) break;
+
+put this. then everything is done.
+NOTE: IF THERE IS ENetPeer* peer = event.peer; UNDER THE CODE YOU PASTED DELETE IT
+
+and in GTOS source, code will be like:
+
+case ENET_EVENT_TYPE_RECEIVE:
+{
+ENetPeer* peer = event.peer;
+if(peer->incomingDataTotal > 5000) break;
+
+
+You can set the limit by your server online if it's giving you a lot trouble,
+but recommended is 5000 as it's given.
+This code can block CPPBOT packet spammer and sebia's proxy.
+That's all for today, don't let people crash your server.
